@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.evilcorp.orangenews.R
 import com.evilcorp.orangenews.databinding.FragmentAllNewsBinding
+import com.evilcorp.orangenews.ui.adapters.AllNewsAdapter
 
 class AllNewsFragment : Fragment() {
 
@@ -22,6 +25,9 @@ class AllNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val rvNews = binding.rvNews
+        rvNews.adapter = AllNewsAdapter()
+        rvNews.layoutManager = LinearLayoutManager(requireContext())
     }
 
 }
