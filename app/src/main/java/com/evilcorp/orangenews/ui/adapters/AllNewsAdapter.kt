@@ -15,12 +15,7 @@ import com.squareup.picasso.Picasso
 
 class AllNewsAdapter : RecyclerView.Adapter<AllNewsAdapter.AllNewsHolder>() {
 
-    var news: ArrayList<News> = arrayListOf(
-        News("О защите языка высших приматов от птичьего влияния. Предложения в порядке обсуждения законопроекта", "https://novaya.media/static/records/aab76a680bfc432f84bf13342e464ddd.jpeg"),
-        News("Не по протоколу. Что такое Минские соглашения, которые позволяли избежать боевых действий в Украине, и как они были нарушены", "https://novaya.media/static/records/0d0454c37d7a415b953a3563bf9f5fe7.jpeg"),
-        News("Права женщин монетизируются и что такое экономика криптовалют. Лекции, которые рекомендует Дмитрий Прокофьев. Выпуск второй", "https://novaya.media/static/records/dfe6bfd8eb914de6a89a6d55f915cc21.jpeg"),
-        News("Донорство госорганов. Сколько денег тратит Петербург на восстановление присоединенных к России областей Украины — и почему это тайна за семью печатями", "https://novaya.media/static/records/506356419d9c4a799553bb29ec6c0d01.jpeg")
-    )
+    var news: List<News> = arrayListOf(News("Загрузка...", "https://www.clipartmax.com/png/full/328-3285005_big-image-pill.png"))
 
     class AllNewsHolder(itemView: View, binding: AllNewsItemBinding) : RecyclerView.ViewHolder(itemView) {
         val titleImage: ImageView = binding.titleImage
@@ -35,15 +30,18 @@ class AllNewsAdapter : RecyclerView.Adapter<AllNewsAdapter.AllNewsHolder>() {
     override fun onBindViewHolder(holder: AllNewsHolder, position: Int) {
         Picasso.get().load(news[position].imageUrl).into(holder.titleImage)
         holder.titleText.text = news[position].title
-        if (news[position].title.length > 100) {
-            holder.titleText.textSize = 16.0f
+        when (news[position].title.length) {
+            in 0..100 -> holder.titleText.textSize = 18.0f
+            in 100..150 -> holder.titleText.textSize = 15.0f
+            in 150..200 -> holder.titleText.textSize = 13.0f
+            else -> holder.titleText.textSize = 11.0f
         }
     }
 
     override fun getItemCount() = news.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(list: ArrayList<News>) {
+    fun setList(list: List<News>) {
         news = list
     }
 }
