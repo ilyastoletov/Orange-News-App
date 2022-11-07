@@ -11,35 +11,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ArticleActivity">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:id="@+id/article_title"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:text="Обратный отсчет начали с номеров. Спецоперация в Украине и «токсичность» России изменили характер конфликта Сербии и Косово: что там происходит?"
-            android:textSize="25sp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/black"
             android:fontFamily="@font/article_bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.132"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.064" />
+            android:text="Обратный оомеров. Спецоперация в Украине и «токсичность» России изменили характер конфликта Сербии и Косово: что там происходит?"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
 
         <ImageView
-            android:layout_width="400dp"
+            android:id="@+id/article_image"
+            android:layout_marginTop="15dp"
+            android:layout_width="330dp"
             android:layout_height="200dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="40dp"
-            android:src="@drawable/title_example_image"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/article_title"
-            app:layout_constraintVertical_bias="0.383" />
+            android:src="@drawable/title_example_image" />
+
+            <TextView
+                android:id="@+id/article_text"
+                android:layout_width="340dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:text="Татьяна Навка, Юлия Барановская, Арам Габрелянов, Владимир Соловьев — среди участников проектов, получивших поддержку Президентского фонда культурных инициатив (ПФКИ), можно обнаружить очень знакомые фамилии. Итоги четвертого специального грантового конкурса 2022 года Фонд объявил на днях, и по этому списку можно понять очертания культурного пространства, которое угодно власти.
+В самом деле, на фоне создания новых реестров запрещенного искусства, которые, конечно, стимулируют расцвет андеграунда, но сильно истощают культурный слой внутри страны, крайне любопытно было бы понять, что государство желает видеть взамен. Когда книжки нелояльных окончательно лягут под прилавок — с чем мы останемся и какую грядку чиновники готовы щедро поливать деньгами? Мы изучили списки победителей, а также заглянули в реестр аутсайдеров — он наглядно свидетельствует о том, что проросло вокруг этой грядки.
+Конкурс был не простой, а специальный. Тема ожидаемая: «Культурная интеграция ЛНР, ДНР, Херсона и Запорожья в единое культурно-историческое пространство». "
+                android:fontFamily="@font/article"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+    </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.evilcorp.orangenews.databinding.ActivityArticleBinding
+import com.squareup.picasso.Picasso
 
 class ArticleActivity : AppCompatActivity() {
 
@@ -14,11 +15,12 @@ class ArticleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this@ArticleActivity, R.layout.activity_article)
-        val articleTitle = intent.getStringExtra("ArticleTitle")
-        val articleText = intent.getStringExtra("ArticleText")
         binding.lifecycleOwner = this
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = ""
+        binding.articleTitle.text = intent.getStringExtra("ArticleTitle")
+        binding.articleText.text = intent.getStringExtra("ArticleText")
+        Picasso.get().load(intent.getStringExtra("ArticleImage")).into(binding.articleImage)
     }
 
 

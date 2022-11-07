@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso
 
 class AllNewsAdapter(val context: Context) : RecyclerView.Adapter<AllNewsAdapter.AllNewsHolder>() {
 
-    var news: List<News> = arrayListOf(News("Загрузка...", "https://www.clipartmax.com/png/full/328-3285005_big-image-pill.png"))
+    var news: List<News> = arrayListOf(News("Загрузка...", "https://www.clipartmax.com/png/full/328-3285005_big-image-pill.png", "dsfjmd"))
 
     class AllNewsHolder(itemView: View, binding: AllNewsItemBinding) : RecyclerView.ViewHolder(itemView) {
         val titleImage: ImageView = binding.titleImage
@@ -44,6 +44,8 @@ class AllNewsAdapter(val context: Context) : RecyclerView.Adapter<AllNewsAdapter
             val intent = Intent(context, ArticleActivity::class.java)
             intent.putExtra("ArticleTitle", news[position].title)
             intent.putExtra("ArticleText", news[position].articleText)
+            intent.putExtra("ArticleImage", news[position].imageUrl)
+            context.startActivity(intent)
         }
     }
 
