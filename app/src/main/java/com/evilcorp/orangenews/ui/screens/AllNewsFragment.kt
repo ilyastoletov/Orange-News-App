@@ -3,13 +3,16 @@ package com.evilcorp.orangenews.ui.screens
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import androidx.recyclerview.widget.RecyclerView.RecyclerListener
 import com.evilcorp.orangenews.R
 import com.evilcorp.orangenews.data.api.models.RssModel
 import com.evilcorp.orangenews.data.models.News
@@ -32,16 +35,17 @@ class AllNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val rvNews = binding.rvNews
-        val rvAdapter = AllNewsAdapter()
+        val rvAdapter = AllNewsAdapter(view.context)
         rvNews.adapter = rvAdapter
         rvNews.layoutManager = LinearLayoutManager(requireContext())
+        rvNews.setHasFixedSize(true)
         viewModel.getNewsFromApi()
 
         var news: MutableList<News> = mutableListOf()
         viewModel.news.observe(viewLifecycleOwner) {
             val newsList = it.articles
             for (article in newsList) {
-                news.add(News(article.articleTitle, article.image.imageUrl))
+                news.add(News(article.articleTitle, article.image.imageUrl, article.articleText))
             }
             rvAdapter.setList(news)
             rvAdapter.notifyDataSetChanged()
