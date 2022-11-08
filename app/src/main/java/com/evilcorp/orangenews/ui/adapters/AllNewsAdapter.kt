@@ -33,6 +33,7 @@ class AllNewsAdapter(val context: Context) : RecyclerView.Adapter<AllNewsAdapter
     override fun onBindViewHolder(holder: AllNewsHolder, position: Int) {
         Picasso.get().load(news[position].imageUrl).into(holder.titleImage)
         holder.titleText.text = news[position].title
+
         when (news[position].title.length) {
             in 0..50 -> holder.titleText.textSize = 22.0f
             in 50..100 -> holder.titleText.textSize = 18.0f
@@ -40,6 +41,7 @@ class AllNewsAdapter(val context: Context) : RecyclerView.Adapter<AllNewsAdapter
             in 150..200 -> holder.titleText.textSize = 13.0f
             else -> holder.titleText.textSize = 11.0f
         }
+
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ArticleActivity::class.java)
             intent.putExtra("ArticleTitle", news[position].title)
@@ -47,6 +49,7 @@ class AllNewsAdapter(val context: Context) : RecyclerView.Adapter<AllNewsAdapter
             intent.putExtra("ArticleImage", news[position].imageUrl)
             context.startActivity(intent)
         }
+
     }
 
     override fun getItemCount() = news.size

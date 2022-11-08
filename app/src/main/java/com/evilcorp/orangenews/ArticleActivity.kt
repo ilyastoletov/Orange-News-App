@@ -1,13 +1,12 @@
 package com.evilcorp.orangenews
 
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
-import android.view.MenuItem
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import com.evilcorp.orangenews.databinding.ActivityArticleBinding
+import com.evilcorp.orangenews.ui.utils.ImageGetter
 import com.squareup.picasso.Picasso
 
 class ArticleActivity : AppCompatActivity() {
@@ -18,11 +17,18 @@ class ArticleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this@ArticleActivity, R.layout.activity_article)
         binding.lifecycleOwner = this
+        val title = intent.getStringExtra("ArticleTitle")
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = ""
-        binding.articleTitle.text = intent.getStringExtra("ArticleTitle")
-        binding.articleText.text = HtmlCompat.fromHtml(intent.getStringExtra("ArticleText")!!, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        supportActionBar!!.title = title
+        binding.articleTitle.text = title
+        loadHtml(intent.getStringExtra("ArticleText")!!)
         Picasso.get().load(intent.getStringExtra("ArticleImage")).into(binding.articleImage)
+    }
+
+    private fun loadHtml(htmlString: String) {
+        val imageGetter = ImageGetter(resources, binding.articleText)
+        val plainTextFromHtml = HtmlCompat.fromHtml(htmlString, HtmlCompat.FROM_HTML_MODE_LEGACY, imageGetter, null)
+        binding.articleText.text = plainTextFromHtml
     }
 
 
