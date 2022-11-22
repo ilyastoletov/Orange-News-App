@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager){
             tab, pos ->
             when(pos) {
-                0 -> tab.text = "Все"
+                0 -> tab.text = "Политика"
                 1 -> tab.text = "Спорт"
-                2 -> tab.text = "Политика"
+                2 -> tab.text = "It"
             }
         }.attach()
     }

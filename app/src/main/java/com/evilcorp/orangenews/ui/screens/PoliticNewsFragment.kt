@@ -3,24 +3,18 @@ package com.evilcorp.orangenews.ui.screens
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import androidx.recyclerview.widget.RecyclerView.RecyclerListener
 import com.evilcorp.orangenews.R
-import com.evilcorp.orangenews.data.api.models.RssModel
 import com.evilcorp.orangenews.data.models.News
 import com.evilcorp.orangenews.data.viewmodels.AllNewsViewModel
 import com.evilcorp.orangenews.databinding.FragmentAllNewsBinding
-import com.evilcorp.orangenews.ui.adapters.AllNewsAdapter
+import com.evilcorp.orangenews.ui.adapters.PoliticNewsAdapter
 
-class AllNewsFragment : Fragment() {
+class PoliticNewsFragment : Fragment() {
 
     lateinit var binding: FragmentAllNewsBinding
     lateinit var viewModel: AllNewsViewModel
@@ -35,7 +29,7 @@ class AllNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val rvNews = binding.rvNews
-        val rvAdapter = AllNewsAdapter(view.context)
+        val rvAdapter = PoliticNewsAdapter(view.context)
         rvNews.adapter = rvAdapter
         rvNews.layoutManager = LinearLayoutManager(requireContext())
         rvNews.setHasFixedSize(true)

@@ -9,16 +9,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.screens.PoliticNewsFragment">
+        tools:context=".ui.screens.ItNewsFragment">
 
-        <ScrollView
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_news"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

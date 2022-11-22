@@ -8,17 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.evilcorp.orangenews.ArticleActivity
 import com.evilcorp.orangenews.data.models.News
 import com.evilcorp.orangenews.databinding.AllNewsItemBinding
 import com.squareup.picasso.Picasso
 
-class AllNewsAdapter(val context: Context) : RecyclerView.Adapter<AllNewsAdapter.AllNewsHolder>() {
+class PoliticNewsAdapter(private val context: Context) : RecyclerView.Adapter<PoliticNewsAdapter.AllNewsHolder>() {
 
-    var news: List<News> = arrayListOf(News("Загрузка...", "https://www.clipartmax.com/png/full/328-3285005_big-image-pill.png", "dsfjmd"))
+    var news: List<News> = arrayListOf()
 
     class AllNewsHolder(itemView: View, binding: AllNewsItemBinding) : RecyclerView.ViewHolder(itemView) {
         val titleImage: ImageView = binding.titleImage

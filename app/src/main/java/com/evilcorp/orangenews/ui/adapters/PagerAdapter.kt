@@ -3,8 +3,8 @@ package com.evilcorp.orangenews.ui.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.evilcorp.orangenews.ui.screens.AllNewsFragment
-import com.evilcorp.orangenews.ui.screens.PoliticsNewsFragment
+import com.evilcorp.orangenews.ui.screens.PoliticNewsFragment
+import com.evilcorp.orangenews.ui.screens.ItNewsFragment
 import com.evilcorp.orangenews.ui.screens.SportsNewsFragment
 
 class PagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
@@ -14,10 +14,10 @@ class PagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fra
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> AllNewsFragment()
+            0 -> PoliticNewsFragment()
             1 -> SportsNewsFragment()
-            2 -> PoliticsNewsFragment()
-            else -> AllNewsFragment()
+            2 -> ItNewsFragment()
+            else -> PoliticNewsFragment()
         }
     }
 

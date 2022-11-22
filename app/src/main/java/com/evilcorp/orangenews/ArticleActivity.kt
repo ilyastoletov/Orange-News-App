@@ -26,8 +26,7 @@ class ArticleActivity : AppCompatActivity() {
     }
 
     private fun loadHtml(htmlString: String) {
-        val imageGetter = ImageGetter(resources, binding.articleText)
-        val plainTextFromHtml = HtmlCompat.fromHtml(htmlString, HtmlCompat.FROM_HTML_MODE_LEGACY, imageGetter, null)
+        val plainTextFromHtml = HtmlCompat.fromHtml(htmlString, HtmlCompat.FROM_HTML_MODE_LEGACY)
         binding.articleText.text = plainTextFromHtml
     }
 

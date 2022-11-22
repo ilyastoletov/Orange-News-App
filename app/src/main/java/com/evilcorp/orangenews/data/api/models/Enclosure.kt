@@ -10,9 +10,9 @@ data class Enclosure(
     @param:Attribute(name="url")
     val imageUrl: String,
 
-    @field:Attribute(name = "length")
+    /*@field:Attribute(name = "length")
     @param:Attribute(name = "length")
-    val imageLength: Int,
+    val imageLength: Int,*/
 
     @field:Attribute(name = "type")
     @param:Attribute(name = "type")
