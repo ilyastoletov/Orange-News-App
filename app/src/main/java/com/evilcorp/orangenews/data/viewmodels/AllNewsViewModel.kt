@@ -1,14 +1,11 @@
 package com.evilcorp.orangenews.data.viewmodels
 
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.evilcorp.orangenews.data.api.models.RssModel
+import com.evilcorp.orangenews.data.api.models.politics.RssModel
 import com.evilcorp.orangenews.data.repositories.MainRepository
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

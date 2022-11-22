@@ -10,7 +10,6 @@ object NewsRetrofitObject {
 
     @Suppress("DEPRECATION")
     val newsApi = Retrofit.Builder()
-        .baseUrl("https://vz.ru/")
         .addConverterFactory(SimpleXmlConverterFactory.create())
         .build()
         .create(NewsApiService::class.java)

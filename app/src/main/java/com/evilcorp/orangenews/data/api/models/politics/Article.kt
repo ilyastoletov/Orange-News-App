@@ -1,4 +1,4 @@
-package com.evilcorp.orangenews.data.api.models
+package com.evilcorp.orangenews.data.api.models.politics
 
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
