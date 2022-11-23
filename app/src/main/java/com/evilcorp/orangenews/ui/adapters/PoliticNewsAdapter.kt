@@ -29,6 +29,7 @@ class PoliticNewsAdapter(private val context: Context) : RecyclerView.Adapter<Po
     }
 
     override fun onBindViewHolder(holder: AllNewsHolder, position: Int) {
+        Picasso.get().load(news[position].imageUrl).into(holder.titleImage)
         holder.titleText.text = news[position].title
 
         when (news[position].title.length) {
@@ -44,6 +45,7 @@ class PoliticNewsAdapter(private val context: Context) : RecyclerView.Adapter<Po
             intent.putExtra("ArticleTitle", news[position].title)
             intent.putExtra("ArticleText", news[position].articleText)
             intent.putExtra("ArticleImage", news[position].imageUrl)
+            intent.putExtra("ArticleLink", news[position].articleLink)
             context.startActivity(intent)
         }
 

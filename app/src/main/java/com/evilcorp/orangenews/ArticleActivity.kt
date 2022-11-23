@@ -1,6 +1,8 @@
 package com.evilcorp.orangenews
 
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.text.HtmlCompat
@@ -23,6 +25,12 @@ class ArticleActivity : AppCompatActivity() {
         binding.articleTitle.text = title
         loadHtml(intent.getStringExtra("ArticleText")!!)
         Picasso.get().load(intent.getStringExtra("ArticleImage")).into(binding.articleImage)
+
+        binding.btnLinkToArticle.setOnClickListener {
+            val uri = Uri.parse(intent.getStringExtra("ArticleLink"))
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
     }
 
     private fun loadHtml(htmlString: String) {

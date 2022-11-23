@@ -45,7 +45,7 @@ class PoliticNewsFragment : Fragment() {
     }
 
     private fun formatNews(): List<News> {
-        val newsFromPrefs = prefs!!.getString("politic_news", "")
+        val newsFromPrefs = prefs.getString("politic_news", "")
         val gsonDecoder = Gson()
         val formattedNews = gsonDecoder.fromJson(newsFromPrefs, RssModel::class.java)
         val newsList = formattedNews.articles
@@ -56,7 +56,8 @@ class PoliticNewsFragment : Fragment() {
                 title=article.articleTitle,
                 imageUrl=article.image.imageUrl,
                 articleText=article.articleText,
-                articleCategory=article.articleCategory
+                articleCategory=article.articleCategory,
+                articleLink=article.articleLink
             ))
         }
         return readyNews

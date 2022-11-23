@@ -11,13 +11,17 @@ data class Article(
     @param:Element(name = "title")
     var articleTitle: String,
 
-    @field:Element(name = "enclosure")
-    @param:Element(name = "enclosure")
-    var image: Enclosure,
+    @field:Element(name = "link")
+    @param:Element(name = "link")
+    var articleLink: String,
 
     @field:Element(name = "description")
     @param:Element(name = "description")
     var articleText: String,
+
+    @field:Element(name = "enclosure")
+    @param:Element(name = "enclosure")
+    var image: Enclosure,
 
     @field:Element(name = "category")
     @param:Element(name = "category")

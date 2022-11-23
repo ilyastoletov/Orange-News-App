@@ -55,6 +55,24 @@
                 android:fontFamily="@font/article"
                 android:textColor="@color/black"
                 />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btn_link_to_article"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardBackgroundColor="@color/orange_main"
+                    android:layout_marginTop="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Читать статью"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/medium"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"/>
+                </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 

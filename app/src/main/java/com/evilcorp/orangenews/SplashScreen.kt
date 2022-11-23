@@ -30,7 +30,7 @@ class SplashScreen : AppCompatActivity() {
 
     private fun saveDataToPrefs(data: RssModel) {
         val gson = Gson()
-        val editor = prefs!!.edit()
+        val editor = prefs.edit()
 
         val jsonData = gson.toJson(data)
         editor.putString("politic_news", jsonData)
