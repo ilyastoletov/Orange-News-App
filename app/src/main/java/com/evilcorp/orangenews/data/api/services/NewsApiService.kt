@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface NewsApiService {
 
-    @GET("https://vz.ru/rss.xml")
+    @GET("https://lenta.ru/rss")
     fun getNews(): Call<RssModel>
 
 }

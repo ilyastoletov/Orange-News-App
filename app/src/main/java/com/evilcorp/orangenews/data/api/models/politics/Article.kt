@@ -19,9 +19,9 @@ data class Article(
     @param:Element(name = "description")
     var articleText: String,
 
-    /*@field:Element(name = "category")
+    @field:Element(name = "category")
     @param:Element(name = "category")
-    var articleCategory: String*/
+    var articleCategory: String
 
 )
 

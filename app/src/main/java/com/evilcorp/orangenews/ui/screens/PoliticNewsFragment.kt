@@ -55,7 +55,9 @@ class PoliticNewsFragment : Fragment() {
             readyNews.add(News(
                 title=article.articleTitle,
                 imageUrl=article.image.imageUrl,
-                articleText=article.articleText))
+                articleText=article.articleText,
+                articleCategory=article.articleCategory
+            ))
         }
         return readyNews
     }
