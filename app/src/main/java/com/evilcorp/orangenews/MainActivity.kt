@@ -1,19 +1,24 @@
 package com.evilcorp.orangenews
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.evilcorp.orangenews.databinding.ActivityMainBinding
 import com.evilcorp.orangenews.ui.adapters.PagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    lateinit var prefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this@MainActivity, R.layout.activity_main).apply { lifecycleOwner = this@MainActivity }
+        prefs = getSharedPreferences("NEWS_MAIN", Context.MODE_PRIVATE)
         initialize()
     }
 
@@ -25,6 +30,8 @@ class MainActivity : AppCompatActivity() {
                 0 -> tab.text = "Политика"
                 1 -> tab.text = "Спорт"
                 2 -> tab.text = "It"
+                3 -> tab.text = "Культура"
+                4 -> tab.text = "Все"
             }
         }.attach()
     }

@@ -14,18 +14,19 @@ import com.evilcorp.orangenews.R
 import com.evilcorp.orangenews.data.models.News
 import com.evilcorp.orangenews.data.utils.NewsDecoder
 import com.evilcorp.orangenews.data.viewmodels.AllNewsViewModel
+import com.evilcorp.orangenews.databinding.FragmentCultureNewsBinding
 import com.evilcorp.orangenews.databinding.FragmentItNewsBinding
 import com.evilcorp.orangenews.databinding.FragmentSportsNewsBinding
 import com.evilcorp.orangenews.ui.adapters.PoliticNewsAdapter
 
-class ItNewsFragment : Fragment() {
+class CultureNewsFragment : Fragment() {
 
-    private lateinit var binding: FragmentItNewsBinding
+    private lateinit var binding: FragmentCultureNewsBinding
     private lateinit var viewModel: AllNewsViewModel
     private lateinit var prefs: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = DataBindingUtil.inflate<ViewDataBinding>(inflater, R.layout.fragment_it_news, container, false)
+        val v = DataBindingUtil.inflate<ViewDataBinding>(inflater, R.layout.fragment_culture_news, container, false)
         binding = DataBindingUtil.bind(v.root)!!
         viewModel = AllNewsViewModel()
         prefs = requireActivity().getSharedPreferences("NEWS_MAIN", Context.MODE_PRIVATE)
@@ -35,7 +36,7 @@ class ItNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val itRv = binding.itNewsRv
+        val itRv = binding.cultureNewsRv
         val adapter = PoliticNewsAdapter(view.context)
         itRv.adapter = adapter
         itRv.layoutManager = LinearLayoutManager(requireContext())
@@ -45,7 +46,7 @@ class ItNewsFragment : Fragment() {
         println(newsList.size.toString())
         val finalNewsList: MutableList<News> = mutableListOf()
         for (article in newsList) {
-            if (article.articleCategory == "it") {
+            if (article.articleCategory == "culture") {
                 finalNewsList.add(article)
             }
         }

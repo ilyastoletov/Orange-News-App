@@ -3,13 +3,11 @@ package com.evilcorp.orangenews.ui.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.evilcorp.orangenews.ui.screens.PoliticNewsFragment
-import com.evilcorp.orangenews.ui.screens.ItNewsFragment
-import com.evilcorp.orangenews.ui.screens.SportsNewsFragment
+import com.evilcorp.orangenews.ui.screens.*
 
 class PagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {
-        return 3
+        return 5
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -17,6 +15,8 @@ class PagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fra
             0 -> PoliticNewsFragment()
             1 -> SportsNewsFragment()
             2 -> ItNewsFragment()
+            3 -> CultureNewsFragment()
+            4 -> AllNewsFragment()
             else -> PoliticNewsFragment()
         }
     }

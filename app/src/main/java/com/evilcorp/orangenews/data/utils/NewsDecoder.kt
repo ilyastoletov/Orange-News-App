@@ -30,10 +30,11 @@ object NewsDecoder {
 
     private fun getArticleCategory(category: String): String {
         return when(category) {
-            "Россия", "Мир", "Экономика", "Силовые структуры", "Ценности", "Бывший СССР" -> "politics"
-            "Наука и техника", "Интернет и СМИ" -> "it"
-            "Путешествия", "Из Жизни", "Среда обитания", "Забота о себе", "Спорт", "Культура" -> "sports"
-            else -> "not category"
+            "Россия", "Мир", "Экономика", "Силовые структуры" -> "politics"
+            "Наука и техника" -> "it"
+             "Спорт" -> "sports"
+            "Культура", "Путешествия" -> "culture"
+            else -> "other"
         }
     }
 
