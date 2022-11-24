@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.evilcorp.orangenews.R
 import com.evilcorp.orangenews.data.api.models.politics.RssModel
 import com.evilcorp.orangenews.data.models.News
+import com.evilcorp.orangenews.data.utils.NewsDecoder
 import com.evilcorp.orangenews.data.viewmodels.AllNewsViewModel
 import com.evilcorp.orangenews.databinding.FragmentAllNewsBinding
 import com.evilcorp.orangenews.ui.adapters.PoliticNewsAdapter
@@ -39,28 +40,15 @@ class PoliticNewsFragment : Fragment() {
         rvNews.adapter = rvAdapter
         rvNews.layoutManager = LinearLayoutManager(requireContext())
         rvNews.setHasFixedSize(true)
-        val newsList: List<News> = formatNews()
-        rvAdapter.setList(newsList)
-        rvAdapter.notifyDataSetChanged()
-    }
-
-    private fun formatNews(): List<News> {
-        val newsFromPrefs = prefs.getString("politic_news", "")
-        val gsonDecoder = Gson()
-        val formattedNews = gsonDecoder.fromJson(newsFromPrefs, RssModel::class.java)
-        val newsList = formattedNews.articles
-        val readyNews: MutableList<News> = mutableListOf()
-
+        val newsList: List<News> = NewsDecoder.formatNews(prefs)
+        val finalNewsList: MutableList<News> = mutableListOf()
         for (article in newsList) {
-            readyNews.add(News(
-                title=article.articleTitle,
-                imageUrl=article.image.imageUrl,
-                articleText=article.articleText,
-                articleCategory=article.articleCategory,
-                articleLink=article.articleLink
-            ))
+            if (article.articleCategory == "politics") {
+                finalNewsList.add(article)
+            }
         }
-        return readyNews
+        rvAdapter.setList(finalNewsList)
+        rvAdapter.notifyDataSetChanged()
     }
 
 }
