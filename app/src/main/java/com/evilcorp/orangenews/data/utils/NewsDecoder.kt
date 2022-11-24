@@ -6,6 +6,7 @@ import com.evilcorp.orangenews.data.models.News
 import com.google.gson.Gson
 
 object NewsDecoder {
+
     fun formatNews(prefs: SharedPreferences): List<News> {
         val newsFromPrefs = prefs.getString("politic_news", "")
         val gsonDecoder = Gson()
@@ -19,16 +20,21 @@ object NewsDecoder {
                 title=article.articleTitle,
                 imageUrl=article.image.imageUrl,
                 articleText=article.articleText,
-                articleCategory=when(article.articleCategory) {
-                    "Россия", "Мир", "Экономика", "Силовые структуры", "Ценности", "Бывший СССР" -> "politics"
-                    "Наука и техника", "Интернет и СМИ" -> "it"
-                    "Путешествия", "Из Жизни", "Среда обитания", "Забота о себе" -> "sports"
-                    else -> "politics"
-                },
+                articleCategory= getArticleCategory(article.articleCategory),
                 articleLink=article.articleLink
             )
             )
         }
         return pendingNews
     }
+
+    private fun getArticleCategory(category: String): String {
+        return when(category) {
+            "Россия", "Мир", "Экономика", "Силовые структуры", "Ценности", "Бывший СССР" -> "politics"
+            "Наука и техника", "Интернет и СМИ" -> "it"
+            "Путешествия", "Из Жизни", "Среда обитания", "Забота о себе", "Спорт", "Культура" -> "sports"
+            else -> "not category"
+        }
+    }
+
 }

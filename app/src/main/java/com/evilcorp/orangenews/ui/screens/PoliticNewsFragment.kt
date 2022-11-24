@@ -41,12 +41,14 @@ class PoliticNewsFragment : Fragment() {
         rvNews.layoutManager = LinearLayoutManager(requireContext())
         rvNews.setHasFixedSize(true)
         val newsList: List<News> = NewsDecoder.formatNews(prefs)
+        println(newsList.size.toString())
         val finalNewsList: MutableList<News> = mutableListOf()
         for (article in newsList) {
             if (article.articleCategory == "politics") {
                 finalNewsList.add(article)
             }
         }
+        println(finalNewsList.size.toString())
         rvAdapter.setList(finalNewsList)
         rvAdapter.notifyDataSetChanged()
     }

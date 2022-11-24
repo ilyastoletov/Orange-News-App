@@ -31,15 +31,7 @@ class PoliticNewsAdapter(private val context: Context) : RecyclerView.Adapter<Po
     override fun onBindViewHolder(holder: AllNewsHolder, position: Int) {
         Picasso.get().load(news[position].imageUrl).into(holder.titleImage)
         holder.titleText.text = news[position].title
-
-        when (news[position].title.length) {
-            in 0..50 -> holder.titleText.textSize = 22.0f
-            in 50..100 -> holder.titleText.textSize = 18.0f
-            in 100..150 -> holder.titleText.textSize = 15.0f
-            in 150..200 -> holder.titleText.textSize = 13.0f
-            else -> holder.titleText.textSize = 11.0f
-        }
-
+        holder.titleText.textSize = getFontSize(news[position].title.length)
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ArticleActivity::class.java)
             intent.putExtra("ArticleTitle", news[position].title)
@@ -49,6 +41,16 @@ class PoliticNewsAdapter(private val context: Context) : RecyclerView.Adapter<Po
             context.startActivity(intent)
         }
 
+    }
+
+    private fun getFontSize(length: Int): Float {
+        return when (length) {
+            in 0..50 -> 22.0f
+            in 50..100 -> 18.0f
+            in 100..150 -> 15.0f
+            in 150..200 -> 13.0f
+            else -> 11.0f
+        }
     }
 
     override fun getItemCount() = news.size
