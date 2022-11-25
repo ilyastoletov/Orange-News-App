@@ -41,16 +41,8 @@ class SportsNewsFragment : Fragment() {
         sportRv.layoutManager = LinearLayoutManager(requireContext())
         sportRv.setHasFixedSize(true)
 
-        val newsList: List<News> = NewsDecoder.formatNews(prefs)
-        println(newsList.size.toString())
-        val finalNewsList: MutableList<News> = mutableListOf()
-        for (article in newsList) {
-            if (article.articleCategory == "sports") {
-                finalNewsList.add(article)
-            }
-        }
-        println(finalNewsList.size.toString())
-        adapter.setList(finalNewsList)
+        val newsList: List<News> = NewsDecoder.formatNews(prefs, "sports")
+        adapter.setList(newsList)
         adapter.notifyDataSetChanged()
     }
 

@@ -45,7 +45,7 @@ class SearchActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        val newsList = NewsDecoder.formatNews(prefs)
+        val newsList = NewsDecoder.formatNews(prefs, "none")
         val searchedNews: MutableList<News> = mutableListOf()
 
         for (article in newsList) {
@@ -77,6 +77,7 @@ class SearchActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                searchEngine(newText!!)
                 return true
             }
 

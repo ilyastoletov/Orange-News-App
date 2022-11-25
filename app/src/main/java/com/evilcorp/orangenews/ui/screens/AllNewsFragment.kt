@@ -42,7 +42,7 @@ class AllNewsFragment : Fragment() {
         allNewsRv.layoutManager = LinearLayoutManager(requireContext())
         allNewsRv.setHasFixedSize(true)
 
-        val newsList: List<News> = NewsDecoder.formatNews(prefs)
+        val newsList: List<News> = NewsDecoder.formatNews(prefs, "none")
         adapter.setList(newsList)
         adapter.notifyDataSetChanged()
 

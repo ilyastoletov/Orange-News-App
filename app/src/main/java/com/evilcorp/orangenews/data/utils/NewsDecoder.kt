@@ -7,7 +7,8 @@ import com.google.gson.Gson
 
 object NewsDecoder {
 
-    fun formatNews(prefs: SharedPreferences): List<News> {
+    /* Getting news from SharedPreferences and sorting them by categories */
+    fun formatNews(prefs: SharedPreferences, category: String): List<News> {
         val newsFromPrefs = prefs.getString("politic_news", "")
         val gsonDecoder = Gson()
         val formattedNews = gsonDecoder.fromJson(newsFromPrefs, RssModel::class.java)
@@ -25,7 +26,19 @@ object NewsDecoder {
             )
             )
         }
-        return pendingNews
+
+        if (category == "none") {
+            return pendingNews
+        }
+
+        val finalNewsList: MutableList<News> = mutableListOf()
+        for (article in pendingNews) {
+            if (article.articleCategory == category) {
+                finalNewsList.add(article)
+            }
+        }
+
+        return finalNewsList
     }
 
     private fun getArticleCategory(category: String): String {
@@ -36,6 +49,15 @@ object NewsDecoder {
             "Культура", "Путешествия" -> "culture"
             else -> "other"
         }
+    }
+
+    fun saveNews(data: Any, prefs: SharedPreferences) {
+        val gson = Gson()
+        val editor = prefs.edit()
+
+        val jsonData = gson.toJson(data)
+        editor.putString("politic_news", jsonData)
+        editor.commit()
     }
 
 }

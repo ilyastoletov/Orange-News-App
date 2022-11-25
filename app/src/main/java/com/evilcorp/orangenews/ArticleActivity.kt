@@ -8,7 +8,6 @@ import android.os.Bundle
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import com.evilcorp.orangenews.databinding.ActivityArticleBinding
-import com.evilcorp.orangenews.ui.utils.ImageGetter
 import com.squareup.picasso.Picasso
 
 class ArticleActivity : AppCompatActivity() {

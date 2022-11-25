@@ -11,13 +11,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evilcorp.orangenews.R
-import com.evilcorp.orangenews.data.api.models.politics.RssModel
 import com.evilcorp.orangenews.data.models.News
 import com.evilcorp.orangenews.data.utils.NewsDecoder
 import com.evilcorp.orangenews.data.viewmodels.AllNewsViewModel
 import com.evilcorp.orangenews.databinding.FragmentAllNewsBinding
 import com.evilcorp.orangenews.ui.adapters.PoliticNewsAdapter
-import com.google.gson.Gson
 
 class PoliticNewsFragment : Fragment() {
 
@@ -37,20 +35,33 @@ class PoliticNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val rvNews = binding.rvNews
         val rvAdapter = PoliticNewsAdapter(view.context)
-        rvNews.adapter = rvAdapter
-        rvNews.layoutManager = LinearLayoutManager(requireContext())
-        rvNews.setHasFixedSize(true)
-        val newsList: List<News> = NewsDecoder.formatNews(prefs)
-        println(newsList.size.toString())
-        val finalNewsList: MutableList<News> = mutableListOf()
-        for (article in newsList) {
-            if (article.articleCategory == "politics") {
-                finalNewsList.add(article)
+
+        rvNews.apply {
+            adapter = rvAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+        }
+
+        setupSwipeLayout(rvAdapter)
+
+        val newsList: List<News> = NewsDecoder.formatNews(prefs, "politics")
+        rvAdapter.setList(newsList)
+        rvAdapter.notifyDataSetChanged()
+    }
+
+    private fun setupSwipeLayout(rvAdapter: PoliticNewsAdapter) {
+
+        binding.politicsSwipeLayout.setOnRefreshListener {
+            viewModel.getNewsFromApi()
+            viewModel.news.observe(viewLifecycleOwner) {
+                NewsDecoder.saveNews(it, prefs)
+                val news: List<News> = NewsDecoder.formatNews(prefs, "politics")
+                rvAdapter.setList(news)
+                rvAdapter.notifyDataSetChanged()
+                binding.politicsSwipeLayout.isRefreshing = false
             }
         }
-        println(finalNewsList.size.toString())
-        rvAdapter.setList(finalNewsList)
-        rvAdapter.notifyDataSetChanged()
+
     }
 
 }
