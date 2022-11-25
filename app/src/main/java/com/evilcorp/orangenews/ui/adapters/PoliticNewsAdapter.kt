@@ -38,6 +38,7 @@ class PoliticNewsAdapter(private val context: Context) : RecyclerView.Adapter<Po
             intent.putExtra("ArticleText", news[position].articleText)
             intent.putExtra("ArticleImage", news[position].imageUrl)
             intent.putExtra("ArticleLink", news[position].articleLink)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
 
