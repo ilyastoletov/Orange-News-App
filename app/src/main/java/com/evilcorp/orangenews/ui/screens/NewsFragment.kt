@@ -15,11 +15,9 @@ import com.evilcorp.orangenews.data.models.News
 import com.evilcorp.orangenews.data.utils.NewsDecoder
 import com.evilcorp.orangenews.data.viewmodels.AllNewsViewModel
 import com.evilcorp.orangenews.databinding.FragmentAllNews2Binding
-import com.evilcorp.orangenews.databinding.FragmentItNewsBinding
-import com.evilcorp.orangenews.databinding.FragmentSportsNewsBinding
-import com.evilcorp.orangenews.ui.adapters.PoliticNewsAdapter
+import com.evilcorp.orangenews.ui.adapters.NewsAdapter
 
-class AllNewsFragment : Fragment() {
+class NewsFragment(val category: String) : Fragment() {
 
     private lateinit var binding: FragmentAllNews2Binding
     private lateinit var viewModel: AllNewsViewModel
@@ -36,16 +34,34 @@ class AllNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val allNewsRv = binding.allNewsRv
-        val adapter = PoliticNewsAdapter(view.context)
-        allNewsRv.adapter = adapter
-        allNewsRv.layoutManager = LinearLayoutManager(requireContext())
-        allNewsRv.setHasFixedSize(true)
+        val newsRv = binding.allNewsRv
+        val rvAdapter = NewsAdapter(view.context)
+        newsRv.apply {
+            adapter = rvAdapter
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
 
-        val newsList: List<News> = NewsDecoder.formatNews(prefs, "none")
-        adapter.setList(newsList)
-        adapter.notifyDataSetChanged()
+        setupSwipeRefreshView(rvAdapter)
 
+        val newsList: List<News> = NewsDecoder.formatNews(prefs, category)
+        rvAdapter.setList(newsList)
+        rvAdapter.notifyDataSetChanged()
+
+    }
+
+    private fun setupSwipeRefreshView(adapter: NewsAdapter) {
+
+        binding.allnewsSwipeLayout.setOnRefreshListener {
+            viewModel.getNewsFromApi()
+            viewModel.news.observe(viewLifecycleOwner) {
+                NewsDecoder.saveNews(it, prefs)
+                val news: List<News> = NewsDecoder.formatNews(prefs, category)
+                adapter.setList(news)
+                adapter.notifyDataSetChanged()
+                binding.allnewsSwipeLayout.isRefreshing = false
+            }
+        }
     }
 
 }

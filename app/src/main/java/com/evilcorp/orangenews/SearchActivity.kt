@@ -1,23 +1,19 @@
 package com.evilcorp.orangenews
 
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.evilcorp.orangenews.data.models.News
 import com.evilcorp.orangenews.data.utils.NewsDecoder
 import com.evilcorp.orangenews.databinding.ActivitySearchBinding
-import com.evilcorp.orangenews.ui.adapters.PoliticNewsAdapter
+import com.evilcorp.orangenews.ui.adapters.NewsAdapter
 
 class SearchActivity : AppCompatActivity() {
 
@@ -35,10 +31,10 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun searchEngine(query: String) {
+    private fun searchEngine(query: String, isSubmitted: Boolean=false) {
 
         /* Setting up recycler view */
-        val rvAdapter = PoliticNewsAdapter(applicationContext)
+        val rvAdapter = NewsAdapter(applicationContext)
         val rv = binding.searchQueryResults
         rv.apply {
             adapter = rvAdapter
@@ -54,7 +50,7 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
-        if (searchedNews.size == 0) {
+        if (searchedNews.size == 0 && isSubmitted) {
             Toast.makeText(applicationContext, "По вашему запросу ничего не найдено", Toast.LENGTH_SHORT).show()
         } else {
             rvAdapter.setList(searchedNews)
@@ -72,7 +68,7 @@ class SearchActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchEngine(query!!)
+                searchEngine(query!!,true)
                 return false
             }
 

@@ -14,7 +14,7 @@ import com.evilcorp.orangenews.data.models.News
 import com.evilcorp.orangenews.databinding.AllNewsItemBinding
 import com.squareup.picasso.Picasso
 
-class PoliticNewsAdapter(private val context: Context) : RecyclerView.Adapter<PoliticNewsAdapter.AllNewsHolder>() {
+class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapter.AllNewsHolder>() {
 
     var news: List<News> = arrayListOf()
 

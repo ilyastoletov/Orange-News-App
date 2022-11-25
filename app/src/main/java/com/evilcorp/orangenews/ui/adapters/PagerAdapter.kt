@@ -12,12 +12,12 @@ class PagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fra
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> PoliticNewsFragment()
-            1 -> SportsNewsFragment()
-            2 -> ItNewsFragment()
-            3 -> CultureNewsFragment()
-            4 -> AllNewsFragment()
-            else -> PoliticNewsFragment()
+            0 -> NewsFragment("politics")
+            1 -> NewsFragment("sports")
+            2 -> NewsFragment("it")
+            3 -> NewsFragment("culture")
+            4 -> NewsFragment("none")
+            else -> NewsFragment("none")
         }
     }
 
