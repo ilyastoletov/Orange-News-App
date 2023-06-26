@@ -9,3 +9,5 @@
 ЯП: Kotlin
 IDE: Android Studio
 Библиотеки: Retrofit2, MVVM, RecyclerView, TabLayout
+
+![image](https://github.com/nagibator-hero/Orange-News-App/assets/112814993/89e53c1c-0ed2-4be4-9c6e-92092f301025)
